@@ -1,0 +1,93 @@
+{% extends 'layout.html' %} {% block content %}
+<div class='col-lg-9 col-md-8 col-sm-12 col-xs-12' id="mapContainer">
+    <div id="googleMap">
+    </div>
+</div>
+<div class='col-lg-3 col-md-4 col-sm-6 col-xs-12'>
+    <div class='form-group selectionMenu'>
+        <label for='hotels'>Hotels</label>
+        <div class="row">
+            <div class='col-lg-10 col-md-10 col-sm-10 col-xs-10'>
+                <select class='form-control'>
+                    {% for hotel in hotels %}
+                    <option value="{{hotel.name}}">{{hotel.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button class='btn'>+</button>
+        </div>
+        <label for='thingsToDo'>Things to Do</label>
+        <div class="row">
+            <div class='col-lg-10 col-md-10 col-sm-10 col-xs-10'>
+                <select class='form-control'>
+                    {% for thing in thingsToDo %}
+                    <option value="{{thing.name}}">{{thing.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button class='btn'>+</button>
+        </div>
+        <label for='restaurants'>Restaurants</label>        
+        <div class="row">
+            <div class='col-lg-10 col-md-10 col-sm-10 col-xs-10'>
+                <select class='form-control'>
+                    {% for restaurant in restaurants %}
+                    <option value="{{restaurant.name}}">{{restaurant.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button class='btn'>+</button>
+        </div>
+    </div>
+</div>
+
+
+<div class='col-lg-3 col-md-4 col-sm-6 col-xs-12'>
+	<div class='dayHolder'>
+		<ul class="nav nav-pills">
+          <li role="presentation" class="active"><a href="#">Day 1</a></li>
+          <li role="presentation"><a href="#">Day 2</a></li>
+          <li role="presentation"><a href="#">Day 3</a></li>
+          <li role="presentation"><a href="#">+</a></li>
+      </ul>
+  </div>
+</div>
+
+<div class='col-lg-3 col-md-4 col-sm-6 col-xs-12'>
+	<div class='activitiesHolder'>
+		<h3 class='activtiesLead'>My Hotel</h3>
+		<ul>
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                    <li><a href="#">My Hotel</a></li>
+                </div>
+                <button class="btn btn-xs">X</button>
+            </div>
+        </ul>
+        <h3>My Restaurants</h3>
+        <ul>
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                  <li><a href="#">My Hotel</a></li>
+              </div>
+              <button class="btn btn-xs">X</button>
+          </div>
+      </ul>
+      <h3>My Things to Do</h3>
+      <ul>
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+              <li><a href="#">My Hotel</a></li>
+          </div>
+          <button class="btn btn-xs">X</button>
+      </div>
+      <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+          <li><a href="#">My Hotel</a></li>
+      </div>
+      <button class="btn btn-xs">X</button>
+  </div>
+</ul>
+</div>
+</div>
+{% endblock %}
