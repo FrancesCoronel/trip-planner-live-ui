@@ -6,11 +6,15 @@
 	<link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="../stylesheets/style.css">
-  <script src="https://maps.googleapis.com/maps/api/js?key={{APIkey}}&sensor=true"></script>
+
   <script type="text/javascript" src="/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/live.js"></script>
+  
+  <script src="https://maps.googleapis.com/maps/api/js?key={{APIkey}}&sensor=true"></script>
+  <script type="text/javascript" src='/js/init_map.js'></script>
 </head>
 <body>
-	<nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -35,8 +39,6 @@
   </nav>
   {% block content %}{% endblock %}
 </body>
-<script type="text/javascript" src='/js/init_map.js'>
-</script>
 </html>
 
 

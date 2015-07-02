@@ -64,7 +64,7 @@ body {
 		margin-left: 1px;
 		margin-right: 1px;
 		padding: 10px;
-		border-radius: 15px;
+		/*border-radius: 15px;*/
 		border: 2px solid $tealAccent;
 		color: $tealAccent;
 		&:hover {
@@ -102,6 +102,15 @@ body {
 	a {
 		font-size: 18px;
 	}
+	h3 {
+		color: $tealAccent;
+	}
+}
+
+.activeDay {
+	margin: 0px;
+	box-shadow: $lightTeal 0px 0px 1px 1px;
+	color: $tealAccent;
 }
 
 @media (max-width: 992px) {
@@ -121,6 +130,7 @@ body {
 		height: 50vh;
 	}
 }
+
 
 
 

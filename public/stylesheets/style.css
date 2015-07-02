@@ -53,7 +53,7 @@ body {
     margin-left: 1px;
     margin-right: 1px;
     padding: 10px;
-    border-radius: 15px;
+    /*border-radius: 15px;*/
     border: 2px solid #00B2B2;
     color: #00B2B2; }
     .dayHolder .nav.nav-pills li a:hover {
@@ -84,6 +84,13 @@ body {
       color: #00B2B2; }
   .activitiesHolder a {
     font-size: 18px; }
+  .activitiesHolder h3 {
+    color: #00B2B2; }
+
+.activeDay {
+  margin: 0px;
+  box-shadow: #A3FFFF 0px 0px 1px 1px;
+  color: #00B2B2; }
 
 @media (max-width: 992px) {
   #mapContainer {
