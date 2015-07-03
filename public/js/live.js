@@ -80,12 +80,11 @@ $(document).ready(function(){
 		}
 
 	})
-	// arr[that index] = cloned data
-	// empty hotelRow, restaurantRow, thingRow
-
-	// if we select a day that has data already entered into arr
-	// then append it to #dailyActivities 
-	// via the index in the array which matches day picked-1
+	// our current issues:
+	// going from day 1 to day 2, then back to day 1: can't remove stuff
+	// adding a day: can't make it active/go to it
+	// should we turn our arr into an object?
+	// considering we will most likely being using MongoDB
 })
 
 
