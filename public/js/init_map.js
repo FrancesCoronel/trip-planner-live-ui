@@ -12,11 +12,33 @@ function initialize_gmaps() {
     var map_canvas_obj = document.getElementById("googleMap");
     // initialize a new Google Map with the options
     map = new google.maps.Map(map_canvas_obj, mapOptions);
+    
     // Add the marker to the map
+    var iconBase = 'images/';
+	var icons = {
+	 hotel: {
+	   icon: iconBase + 'hotel.png'
+	 },
+	 restaurant: {
+	   icon: iconBase + 'restaurant.png'
+	 },
+	 thing: {
+	   icon: iconBase + 'thing.png'
+	 }
+	};
+
+	function addMarker(feature) {
+	 var marker = new google.maps.Marker({
+	   position: feature.position,
+	   icon: icons[feature.type].icon,
+	   map: map
+	 });
+	}
+
     var marker = new google.maps.Marker({
       position: myLatlng,
       title:"Hello World!"
-      // icon: /path/to/file;
+      //icon: /path/to/file;
     });
         var styles = [
 	       	{

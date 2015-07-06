@@ -27,14 +27,28 @@ function addMapMarker(locationType, name) {
     }
     lat = place[0];
     lon = place[1];
+
     var latLng = new google.maps.LatLng(lat, lon);
+    // Add the marker to the map
+    var iconBase = 'images/';
+	var icons = {
+	 hotel: {
+	   icon: iconBase + 'hotel.png'
+	 },
+	 restaurant: {
+	   icon: iconBase + 'restaurant.png'
+	 },
+	 thing: {
+	   icon: iconBase + 'thing.png'
+	 }
+	};
     var marker = new google.maps.Marker({
         position: latLng,
-        title: name
+        title: name,
+    	icon: icons[locationType].icon
     });
 
     marker.setMap(map);
-
     return marker;
 }
 
@@ -48,11 +62,12 @@ $(document).ready(function() {
         var hotelElement = '<li><a href="#">' + hotelName + '</a><button class="btn btn-xs">X</button></li>';
         $(hotelElement).appendTo('#pickedHotel');
         //add to arr
-        var activitiesStuff = $('.activitiesHolder').clone();
+        var activitiesStuff = $('#dailyActivities').children('.activitiesHolder').clone();
         arr[Number($('.activeDay').text())] = activitiesStuff[0].innerHTML;
         // add Marker to map as well
         var marker = addMapMarker('hotel', hotelName);
-        activitiesStuff[0].markers.push(marker);
+        activitiesStuff[1] = {markers: []};
+        activitiesStuff[1].markers.push(marker);
     });
     // select and set the restaurant
     $('.addRestaurant').on('click', function() {
@@ -66,6 +81,10 @@ $(document).ready(function() {
         //add to arr
         var activitiesStuff = $('.activitiesHolder').clone();
         arr[Number($('.activeDay').text())] = activitiesStuff[0].innerHTML;
+        // add Marker to map as well
+        var marker = addMapMarker('restaurant', restaurantName);
+        activitiesStuff[1] = {markers: []};
+        activitiesStuff[1].markers.push(marker);
     });
     // select and set the thing to do
     $('.addThing').on('click', function() {
@@ -75,6 +94,10 @@ $(document).ready(function() {
         //add to arr
         var activitiesStuff = $('.activitiesHolder').clone();
         arr[Number($('.activeDay').text())] = activitiesStuff[0].innerHTML;
+        // add Marker to map as well
+        var marker = addMapMarker('thing', thingName);
+        activitiesStuff[1] = {markers: []};
+        activitiesStuff[1].markers.push(marker);
     });
 
     //remove any item
