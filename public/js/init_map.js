@@ -1,3 +1,4 @@
+var map;
 function initialize_gmaps() {
     // initialize new google maps LatLng object
     var myLatlng = new google.maps.LatLng(40.705189,-74.009209);
@@ -10,7 +11,7 @@ function initialize_gmaps() {
     // get the maps div's HTML obj
     var map_canvas_obj = document.getElementById("googleMap");
     // initialize a new Google Map with the options
-    var map = new google.maps.Map(map_canvas_obj, mapOptions);
+    map = new google.maps.Map(map_canvas_obj, mapOptions);
     // Add the marker to the map
     var marker = new google.maps.Marker({
       position: myLatlng,
