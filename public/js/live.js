@@ -1,4 +1,5 @@
 var arr = [];
+var activitiesStuff = [];
 
 function getPlace(schema, placeName) {
 
@@ -52,6 +53,16 @@ function addMapMarker(locationType, name) {
     return marker;
 }
 
+function removeMarker(markerTitle,day){
+    // var markers = arr[Number($('.activeDay').text())].markers;
+    var makers = activitiesStuff[0].markers;
+    var idx;
+    markers.forEach(function(m,i){
+        if(m.title === markerTitle) idx = i;
+    });
+    markers.splice(idx,1)[0].setMap(null);
+}
+
 $(document).ready(function() {
 
     // select and set the hotel
@@ -62,29 +73,32 @@ $(document).ready(function() {
         var hotelElement = '<li><a href="#">' + hotelName + '</a><button class="btn btn-xs">X</button></li>';
         $(hotelElement).appendTo('#pickedHotel');
         //add to arr
-        var activitiesStuff = $('#dailyActivities').children('.activitiesHolder').clone();
+        activitiesStuff = $('#dailyActivities').children('.activitiesHolder').clone();
         arr[Number($('.activeDay').text())] = activitiesStuff[0].innerHTML;
         // add Marker to map as well
         var marker = addMapMarker('hotel', hotelName);
         activitiesStuff[1] = {markers: []};
         activitiesStuff[1].markers.push(marker);
+        extendBounds(marker);
     });
     // select and set the restaurant
     $('.addRestaurant').on('click', function() {
+        var restaurantName;
         if ($('#pickedRestaurant').children().length < 3) {
-            var restaurantName = $('#restaurantName option:selected').val();
+            restaurantName = $('#restaurantName option:selected').val();
             var restaurantElement = '<li><a class="addedRestaurant" href="#">' + restaurantName + '</a><button class="btn btn-xs">X</button></li>';
             $(restaurantElement).appendTo('#pickedRestaurant');
         } else {
             alert("Can only pick three restaurants, duhh!");
         }
         //add to arr
-        var activitiesStuff = $('.activitiesHolder').clone();
+        activitiesStuff = $('.activitiesHolder').clone();
         arr[Number($('.activeDay').text())] = activitiesStuff[0].innerHTML;
         // add Marker to map as well
         var marker = addMapMarker('restaurant', restaurantName);
         activitiesStuff[1] = {markers: []};
         activitiesStuff[1].markers.push(marker);
+        extendBounds(marker);
     });
     // select and set the thing to do
     $('.addThing').on('click', function() {
@@ -92,12 +106,13 @@ $(document).ready(function() {
         var thingElement = '<li><a href="#">' + thingName + '</a><button class="btn btn-xs">X</button></li>';
         $(thingElement).appendTo('#pickedThing');
         //add to arr
-        var activitiesStuff = $('.activitiesHolder').clone();
+        activitiesStuff = $('.activitiesHolder').clone();
         arr[Number($('.activeDay').text())] = activitiesStuff[0].innerHTML;
         // add Marker to map as well
         var marker = addMapMarker('thing', thingName);
         activitiesStuff[1] = {markers: []};
         activitiesStuff[1].markers.push(marker);
+        extendBounds(marker);
     });
 
     //remove any item
@@ -105,8 +120,12 @@ $(document).ready(function() {
     $('#dailyActivities').delegate('button', 'click', function() {
         console.log(this);
         $(this).parent().remove();
-        var activitiesStuff = $('.activitiesHolder').clone();
-        arr[Number($('.activeDay').text())] = activitiesStuff[0].innerHTML;
+        var activitiesStuffTemp = $('.activitiesHolder').clone();
+        arr[Number($('.activeDay').text())] = activitiesStuffTemp[0].innerHTML;
+        narrowBounds(this.marker);
+        // console.log(activitiesStuff);
+        removeMarker( $('#hotelName option:selected').val(), Number($('.activeDay').text()));
+        // activitiesStuff.markers[0].setMap(null);
     });
 
     $('#addDay').on('click', function() {
